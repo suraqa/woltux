@@ -1,0 +1,44 @@
+/******** Popular Products Section ********/
+.popular-products
+.underline {
+    width: 50px;
+    height: 3px;
+    background-color: rgb(55, 177, 177);
+}
+
+.popular-products
+.card {
+    height: 100%;
+}
+
+.popular-products
+.card
+.wishlist-container
+a {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: 2px solid rgb(55, 177, 177);
+    border-radius: 50%;
+    padding: 5px 8px;
+    visibility: hidden;
+    color: rgb(55, 177, 177);
+    background: whitesmoke;
+
+}
+
+.popular-products
+.card:hover
+.wishlist-container
+a {
+    visibility: visible;
+    transition: all .5s;
+}
+
+.popular-products
+.card:hover
+.wishlist-container
+a:hover {
+    color: whitesmoke;
+    background: rgb(55, 177, 177);
+}
