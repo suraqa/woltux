@@ -9,6 +9,7 @@
 .popular-products
 .card {
     height: 100%;
+
 }
 
 .popular-products
@@ -22,6 +23,8 @@ a {
     border-radius: 50%;
     padding: 5px 8px;
     visibility: hidden;
+    transition: .5s ease-in-out;
+    opacity: 0;
     color: rgb(55, 177, 177);
     background: whitesmoke;
 
@@ -32,7 +35,8 @@ a {
 .wishlist-container
 a {
     visibility: visible;
-    transition: all .5s;
+    transition: .5s ease-in-out;
+    opacity: 1;
 }
 
 .popular-products
@@ -41,4 +45,72 @@ a {
 a:hover {
     color: whitesmoke;
     background: rgb(55, 177, 177);
+}
+
+/********* Product Show Section ***********/
+.product-show
+.wishlist-container
+a {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    border: 2px solid rgb(55, 177, 177);
+    border-radius: 50%;
+    padding: 5px 8px;
+    visibility: hidden;
+    opacity: 0;
+    color: rgb(55, 177, 177);
+    background: whitesmoke;
+    transition: all .5s;
+}
+
+.product-show
+.wishlist-container
+a:hover {
+    color: whitesmoke;
+    background: rgb(55, 177, 177);
+}
+
+.content .product-img:hover .wishlist-container a {
+    visibility: visible;
+    opacity: 1;
+    transition: .5s ease-in-out;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.btn-p,
+.btn-m,
+quantity-btn {
+    height: 50px;
+}
+
+.btn-p,
+.btn-m {
+    width: 35px;
+    border-radius: 0;
+    border: 1px solid gray;
+}
+
+.quantity-btn {
+    width: 50px;
+    text-align: center;
+    border-radius: 0;
+    border: 1px solid gray;
+    border-left: none;
+    border-right: none;
+}
+
+.product-show
+form
+a {
+    background: rgb(55, 177, 177) !important;
+    border: none;
+    /* border-radius: 0; */
+    margin-left: 50px;
+    padding-top: 13px;
+    /* font-size: 18px; */
+    /* line-height: 40px; */
 }
