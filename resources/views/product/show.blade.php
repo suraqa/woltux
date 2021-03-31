@@ -76,8 +76,21 @@
                                 </tr>
                             </tbody>
                         </table>
-
+                        <div>
+                            {{-- <form action="{{ route("cart.add", $product) }}" method="get"> --}}
+                            <form action="#" method="get" onsubmit="return false">
+                                <div class="d-flex my-5">
+                                    <input type="button" value="-" class="btn-p" onclick="updateQuantity(this.value)">
+                                    <input type="number" name="quantity" id="quantity" class="quantity-btn" min="1"
+                                        value="1">
+                                    <input type="button" value="+" class="btn-m" onclick="updateQuantity(this.value)">
+                                    <button type="submit" onclick="addToCart({{ $product->id }})" class="btn btn-lg btn-primary ml-5" data-toggle="modal"
+                                        data-target="#exampleModal"><strong>ADD TO CART</strong></button>
+                                </div>
+                            </form>
+                        </div>
                         <script>
+                            // let cartItems;
                             const updateQuantity = operator => {
                                 const quantityElement = document.getElementById("quantity")
                                 switch (operator) {
@@ -89,25 +102,27 @@
                                             quantityElement.value--
                                             break
                                         }
-                                        default:
-                                            break
+                                    default:
+                                        break
                                 }
                             }
 
-                        </script>
+                            const addToCart = (id) => {
+                                const quantityElement = document.getElementById("quantity")
+                                $.ajax({
+                                    url: "/cart/add/" + id,
+                                    data: {
+                                        "quantity": quantityElement.value
+                                    },
+                                    type: 'get',
+                                    success: response => {
+                                        // cartItems = response
+                                        // console.log(response);
+                                    }
+                                });
+                            }
 
-                        <form action="#" method="get" class="mt-5">
-                            <div>
-                                <div class="d-flex">
-                                    <input type="button" value="-" class="btn-p" onclick="updateQuantity(this.value)">
-                                    <input type="number" name="quantity" id="quantity" class="quantity-btn" min="1"
-                                        value="1">
-                                    <input type="button" value="+" class="btn-m" onclick="updateQuantity(this.value)">
-                                    <a class="btn btn-lg btn-primary" data-toggle="modal"
-                                        data-target="#exampleModal"><strong>ADD TO CART</strong></a>
-                                </div>
-                            </div>
-                        </form>
+                        </script>
                     </div>
                 </div>
             </div>
@@ -128,12 +143,18 @@
                     <div class="row justify-content-center">
                         <div class="col-10">
                             <div class="row justify-content-center">
-                                <div class="col-8 p-0">
-                                    <div>
-                                        <h1>{{ strtoupper($product->name) }}</h1>
-                                        <p class="mt-5">BASE PRICE:<strong> ${{ $product->price }}.</strong></p>
+                                @if ($cart)
+                                    <div class="col-8 p-0">
+                                        <div>
+                                            <h1>Product name</h1>
+                                            <p class="mt-5">BASE PRICE:<strong></strong></p>
+                                        </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-8 p-0">
+                                        asdsa
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -145,5 +166,5 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 @endsection

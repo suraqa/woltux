@@ -3,10 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
+
+    public function add(Request $request, Product $product)
+    {
+        if(count(Cart::where("p_id", $product->id)->get())) {
+            $cartToUpdate = Cart::where("p_id", $product->id)->get();
+            $cartToUpdate[0]->update(["quantity" => ($cartToUpdate[0]->quantity + $request["quantity"])]);
+        } else {
+            $cart = new Cart([
+                "u_id" => Auth::id(),
+                "p_id" => $product->id,
+                "quantity" => $request["quantity"]
+            ]);
+            $cart->save();
+        }
+    }
     /**
      * Display a listing of the resource.
      *

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
@@ -16,11 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Homepage Route
 Route::get('/', [PagesController::class, "index"]);
 
+// Auth routes
 Auth::routes();
 
+// Products routes
 Route::resource('product', ProductController::class);
 
+// Cart routes
+Route::get("/cart/add/{product}", [CartController::class, "add"])->name("cart.add");
+// Route::resource('cart', CartController::class);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

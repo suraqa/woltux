@@ -25,6 +25,9 @@
 
     {{-- Fontawesome --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {{-- jQuery --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -40,12 +43,6 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-
-                </ul>
-
-                <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
@@ -79,6 +76,10 @@
                             </div>
                         </li>
                     @endguest
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                        data-toggle="modal" data-target="#exampleModal"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                    </li>
                 </ul>
             </div>
         </div>
