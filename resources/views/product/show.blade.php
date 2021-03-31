@@ -1,3 +1,14 @@
+<?php
+    if ($product->sub_cat->name === 'Suits' && $product->sub_cat->cat->name === 'Men') {
+        $img_path = '/images/men-suit.png';
+    } elseif ($product->sub_cat->name === 'Accessories' && $product->sub_cat->cat->name === 'Men') {
+        $img_path = '/images/men-watch.png';
+    } elseif ($product->sub_cat->name === 'Suits' && $product->sub_cat->cat->name === 'Women') {
+        $img_path = '/images/women-suit.jpg';
+    } else {
+        $img_path = '/images/women-watch.jpg';
+    }
+?>
 @extends('layouts.app')
 
 @section('content')
@@ -8,17 +19,7 @@
                 <div class="col-4">
                     <div class="content">
                         <div class="product-img">
-                            <img src="
-                                        <?php if ($product->sub_cat->name === 'Suits' && $product->sub_cat->cat->name === 'Men') {
-                                            echo '/images/men-suit.png';
-                                        } elseif ($product->sub_cat->name === 'Accessories' && $product->sub_cat->cat->name === 'Men') {
-                                            echo '/images/men-watch.png';
-                                        } elseif ($product->sub_cat->name === 'Suits' && $product->sub_cat->cat->name === 'Women') {
-                                            echo '/images/women-suit.jpg';
-                                        } else {
-                                            echo '/images/women-watch.jpg';
-                                        } ?>
-                                        " alt="" class="img-fluid w-100">
+                            <img src="{{ $img_path }}" alt="" class="img-fluid w-100">
                             <div class="wishlist-container">
                                 <a href="#" title="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
                             </div>
@@ -91,7 +92,6 @@
                                         default:
                                             break
                                 }
-                                // console.log(operator)
                             }
 
                         </script>
@@ -103,7 +103,8 @@
                                     <input type="number" name="quantity" id="quantity" class="quantity-btn" min="1"
                                         value="1">
                                     <input type="button" value="+" class="btn-m" onclick="updateQuantity(this.value)">
-                                    <a class="btn btn-lg btn-primary" data-toggle="modal" data-target="#exampleModal"><strong>ADD TO CART</strong></a>
+                                    <a class="btn btn-lg btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal"><strong>ADD TO CART</strong></a>
                                 </div>
                             </div>
                         </form>
@@ -118,13 +119,24 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h1 class="modal-title" id="exampleModalLabel">Your Cart</h1>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+                            <div class="row justify-content-center">
+                                <div class="col-8 p-0">
+                                    <div>
+                                        <h1>{{ strtoupper($product->name) }}</h1>
+                                        <p class="mt-5">BASE PRICE:<strong> ${{ $product->price }}.</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
