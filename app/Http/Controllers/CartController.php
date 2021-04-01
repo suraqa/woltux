@@ -52,6 +52,63 @@ class CartController extends Controller
     public function getCartItems() {
         return Session::get("cart");
     }
+
+    public function deleteCartItem(Product $product) {
+        $cartItems = Session::get("cart");
+        foreach($cartItems as $p_id => $items ) {
+            if($p_id == $product->id) {
+                unset($cartItems[$p_id]);
+                // return "1";
+            }
+        }
+
+
+        Session::put("cart", $cartItems);
+        return "done";
+        // return Session::get("cart");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Display a listing of the resource.
      *

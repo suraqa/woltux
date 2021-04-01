@@ -114,3 +114,11 @@ a {
     /* font-size: 18px; */
     /* line-height: 40px; */
 }
+
+.modal
+.modal-body
+#cartItems
+.cartItem
+a {
+    cursor: pointer;
+}

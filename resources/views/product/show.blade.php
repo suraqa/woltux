@@ -89,6 +89,7 @@
                             </form>
                         </div>
                         <script>
+
                             // let cartItems;
                             const updateQuantity = operator => {
                                 const quantityElement = document.getElementById("quantity")
@@ -124,8 +125,9 @@
                                                     `<h1 id="title"> ${value.name.toUpperCase()}</h1>
                                                     <p class="mt-3">BASE PRICE:<strong> $${value.price}.</strong></p>
                                                     <p>QUANTITY:<strong> ${value.quantity}</strong></p>
-                                                    <p>SUB-TOTAL:<strong> $${value.price * value.quantity}</strong></p>`
-                                                console.log(key, value)
+                                                    <p>SUB-TOTAL:<strong> $${value.price * value.quantity}</strong></p>
+                                                    <a onclick="deleteCart(${key})" class="text-danger">Delete item</a>`
+                                                // console.log(key, value)
                                             });
                                             document.getElementById("cartItems").innerHTML = content
                                         } else {
@@ -146,11 +148,13 @@
                                             let content = ""
                                             $.each(cartItems, (key, value) => {
                                                 content +=
-                                                    `<h1 id="title"> ${value.name.toUpperCase()}</h1>
-                                                    <p class="mt-3">BASE PRICE:<strong> $${value.price}.</strong></p>
-                                                    <p>QUANTITY:<strong> ${value.quantity}</strong></p>
-                                                    <p>SUB-TOTAL:<strong> $${value.price * value.quantity}</strong></p>`
-                                                // console.log(key, value)
+                                                    `<div class="cartItem">
+                                                        <h1 id="title" class="mt-5"> ${value.name.toUpperCase()}</h1>
+                                                        <p class="mt-3 mb-0">BASE PRICE:<strong> $${value.price}.</strong></p>
+                                                        <p class="mb-0">QUANTITY:<strong> ${value.quantity}</strong></p>
+                                                        <p class="mb-0">SUB-TOTAL:<strong> $${value.price * value.quantity}</strong></p>
+                                                        <a href="#" onclick="deleteCart(${key})" class="text-danger">Delete item</a>
+                                                    </div>`
                                             });
                                             document.getElementById("cartItems").innerHTML = content
                                         } else {
@@ -160,7 +164,26 @@
                                 });
                             }
 
+
+
+                            const deleteCart = (id) => {
+                                $.ajaxSetup({
+                                    headers: {
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                    }
+                                });
+                                $.ajax({
+                                    url: "/cart/delete/" + id,
+                                    type: "delete",
+                                    success: response => {
+                                        // $("#cartItems").load(" #cartItems");
+                                    }
+                                })
+                                // console.log(id);
+                            }
+
                         </script>
+                        {{-- <a href="#"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a> --}}
                     </div>
                 </div>
             </div>
@@ -183,6 +206,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-10 p-0">
                                     <div id="cartItems">
+
                                     </div>
                                 </div>
                             </div>
