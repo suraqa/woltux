@@ -28,6 +28,7 @@ Route::resource('product', ProductController::class);
 
 // Cart routes
 Route::get("/cart/add/{product}", [CartController::class, "add"])->name("cart.add");
+Route::get("/cart/get", [CartController::class, "getCartItems"])->name("cart.get");
 // Route::resource('cart', CartController::class);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

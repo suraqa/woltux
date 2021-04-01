@@ -45,11 +45,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, Request $request)
     {
         return view("product.show", [
             "product" => $product,
-            "cart" => Cart::latest()
+            // "cart" => Cart::latest()->get(),
+            "request" => $request
         ]);
     }
 

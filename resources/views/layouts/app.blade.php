@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,13 +76,15 @@
                         </li>
                     @endguest
                     <li class="nav-item">
-                        <a class="nav-link" href="#"
-                        data-toggle="modal" data-target="#exampleModal"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                        <a class="nav-link" href="#" onclick="getCart()" data-toggle="modal" data-target="#exampleModal">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
 
 
     @yield('content')

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- {{ dd($products[1]->sub_cat->cat->name) }} --}}
+    {{-- {{ dd($cart) }} --}}
     <section class="popular-products my-5 py-5">
         <div class="container">
             <div class="heading text-center">
@@ -39,5 +39,34 @@
             </div>
         </div>
     </section>
+    {{-- Modal --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="exampleModalLabel">Cart</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+                            <div class="row justify-content-center">
+                                <div class="col-10 p-0">
+                                    <div id="cartItems">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection

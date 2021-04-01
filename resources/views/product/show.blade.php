@@ -12,7 +12,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <section class="product-show my-5 py-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -117,7 +116,46 @@
                                     type: 'get',
                                     success: response => {
                                         // cartItems = response
-                                        // console.log(response);
+                                        if(response) {
+                                            cartItems = response
+                                            let content = ""
+                                            $.each(cartItems, (key, value) => {
+                                                content +=
+                                                    `<h1 id="title"> ${value.name.toUpperCase()}</h1>
+                                                    <p class="mt-3">BASE PRICE:<strong> $${value.price}.</strong></p>
+                                                    <p>QUANTITY:<strong> ${value.quantity}</strong></p>
+                                                    <p>SUB-TOTAL:<strong> $${value.price * value.quantity}</strong></p>`
+                                                console.log(key, value)
+                                            });
+                                            document.getElementById("cartItems").innerHTML = content
+                                        } else {
+                                            console.log("nothin received")
+                                        }
+                                    }
+                                });
+                            }
+
+                            let cartItems
+                            const getCart = () => {
+                            $.ajax({
+                                    url: "/cart/get",
+                                    type: 'get',
+                                    success: response => {
+                                        if(response) {
+                                            cartItems = response
+                                            let content = ""
+                                            $.each(cartItems, (key, value) => {
+                                                content +=
+                                                    `<h1 id="title"> ${value.name.toUpperCase()}</h1>
+                                                    <p class="mt-3">BASE PRICE:<strong> $${value.price}.</strong></p>
+                                                    <p>QUANTITY:<strong> ${value.quantity}</strong></p>
+                                                    <p>SUB-TOTAL:<strong> $${value.price * value.quantity}</strong></p>`
+                                                // console.log(key, value)
+                                            });
+                                            document.getElementById("cartItems").innerHTML = content
+                                        } else {
+                                            console.log("nothin received")
+                                        }
                                     }
                                 });
                             }
@@ -143,18 +181,10 @@
                     <div class="row justify-content-center">
                         <div class="col-10">
                             <div class="row justify-content-center">
-                                @if ($cart)
-                                    <div class="col-8 p-0">
-                                        <div>
-                                            <h1>Product name</h1>
-                                            <p class="mt-5">BASE PRICE:<strong></strong></p>
-                                        </div>
+                                <div class="col-10 p-0">
+                                    <div id="cartItems">
                                     </div>
-                                @else
-                                    <div class="col-8 p-0">
-                                        asdsa
-                                    </div>
-                                @endif
+                                </div>
                             </div>
                         </div>
                     </div>

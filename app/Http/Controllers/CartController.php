@@ -6,23 +6,51 @@ use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
 
-    public function add(Request $request, Product $product)
-    {
-        if(count(Cart::where("p_id", $product->id)->get())) {
-            $cartToUpdate = Cart::where("p_id", $product->id)->get();
-            $cartToUpdate[0]->update(["quantity" => ($cartToUpdate[0]->quantity + $request["quantity"])]);
-        } else {
-            $cart = new Cart([
-                "u_id" => Auth::id(),
-                "p_id" => $product->id,
-                "quantity" => $request["quantity"]
-            ]);
-            $cart->save();
+    public function add(Request $request, Product $product) {
+
+        $cart = session()->get("cart");
+
+        // if cart is empty
+        if(!$cart) {
+            $cart = [
+                $product->id => [
+                    "name" => $product->name,
+                    "quantity" => $request["quantity"],
+                    "price" => $product->price,
+                ]
+            ];
+            session()->put('cart', $cart);
+            return Session::get("cart");
+            // return session()->get("cart");
         }
+
+        // if cart not empty but the product exists
+        if(isset($cart[$product->id])) {
+            $cart[$product->id]["quantity"] += $request["quantity"];
+            session()->put('cart', $cart);
+            return Session::get("cart");
+            // return session()->get("cart");
+        }
+
+        // if cart not empty & the product doesnt exist
+        $cart[$product->id] = [
+            "name" => $product->name,
+            "quantity" => $request["quantity"],
+            "price" => $product->price,
+        ];
+        session()->put("cart", $cart);
+        return Session::get("cart");
+        // return $cart;
+
+    }
+
+    public function getCartItems() {
+        return Session::get("cart");
     }
     /**
      * Display a listing of the resource.
@@ -31,6 +59,7 @@ class CartController extends Controller
      */
     public function index()
     {
+        // Session::get();
         //
     }
 
