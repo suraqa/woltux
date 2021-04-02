@@ -76,7 +76,6 @@
                             </tbody>
                         </table>
                         <div>
-                            {{-- <form action="{{ route("cart.add", $product) }}" method="get"> --}}
                             <form action="#" method="get" onsubmit="return false">
                                 <div class="d-flex my-5">
                                     <input type="button" value="-" class="btn-p" onclick="updateQuantity(this.value)">
@@ -88,102 +87,6 @@
                                 </div>
                             </form>
                         </div>
-                        {{-- <script>
-
-                            // let cartItems;
-                            const updateQuantity = operator => {
-                                const quantityElement = document.getElementById("quantity")
-                                switch (operator) {
-                                    case "+":
-                                        quantityElement.value++
-                                        break
-                                    case "-":
-                                        if (quantityElement.value > 1) {
-                                            quantityElement.value--
-                                            break
-                                        }
-                                    default:
-                                        break
-                                }
-                            }
-
-                            const addToCart = (id) => {
-                                const quantityElement = document.getElementById("quantity")
-                                $.ajax({
-                                    url: "/cart/add/" + id,
-                                    data: {
-                                        "quantity": quantityElement.value
-                                    },
-                                    type: 'get',
-                                    success: response => {
-                                        // cartItems = response
-                                        if(response) {
-                                            cartItems = response
-                                            let content = ""
-                                            $.each(cartItems, (key, value) => {
-                                                content +=
-                                                    `<h1 id="title"> ${value.name.toUpperCase()}</h1>
-                                                    <p class="mt-3">BASE PRICE:<strong> $${value.price}.</strong></p>
-                                                    <p>QUANTITY:<strong> ${value.quantity}</strong></p>
-                                                    <p>SUB-TOTAL:<strong> $${value.price * value.quantity}</strong></p>
-                                                    <a onclick="deleteCart(${key})" class="text-danger">Delete item</a>`
-                                                // console.log(key, value)
-                                            });
-                                            document.getElementById("cartItems").innerHTML = content
-                                        } else {
-                                            console.log("nothin received")
-                                        }
-                                    }
-                                });
-                            }
-
-                            let cartItems
-                            const getCart = () => {
-                            $.ajax({
-                                    url: "/cart/get",
-                                    type: 'get',
-                                    success: response => {
-                                        if(response) {
-                                            cartItems = response
-                                            let content = ""
-                                            $.each(cartItems, (key, value) => {
-                                                content +=
-                                                    `<div class="cartItem">
-                                                        <h1 id="title" class="mt-5"> ${value.name.toUpperCase()}</h1>
-                                                        <p class="mt-3 mb-0">BASE PRICE:<strong> $${value.price}.</strong></p>
-                                                        <p class="mb-0">QUANTITY:<strong> ${value.quantity}</strong></p>
-                                                        <p class="mb-0">SUB-TOTAL:<strong> $${value.price * value.quantity}</strong></p>
-                                                        <a href="#" onclick="deleteCart(${key})" class="text-danger">Delete item</a>
-                                                    </div>`
-                                            });
-                                            document.getElementById("cartItems").innerHTML = content
-                                        } else {
-                                            console.log("nothin received")
-                                        }
-                                    }
-                                });
-                            }
-
-
-
-                            const deleteCart = (id) => {
-                                $.ajaxSetup({
-                                    headers: {
-                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                    }
-                                });
-                                $.ajax({
-                                    url: "/cart/delete/" + id,
-                                    type: "delete",
-                                    success: response => {
-                                        // $("#cartItems").load(" #cartItems");
-                                    }
-                                })
-                                // console.log(id);
-                            }
-
-                        </script> --}}
-                        {{-- <a href="#"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a> --}}
                     </div>
                 </div>
             </div>
@@ -214,8 +117,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="mx-auto">
+                        <a href="{{ route("cart.show") }}" class="btn btn-secondary">View Cart</a>
+                        <a href="" class="btn btn-primary">Checkout</a>
+                    </div>
                 </div>
             </div>
         </div>

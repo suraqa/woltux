@@ -122,3 +122,46 @@ a {
 a {
     cursor: pointer;
 }
+
+/****** CART SECTION *********/
+
+/* Cart.show */
+
+.cart-show
+.breadcrumbs
+h3
+a {
+    margin: 0 10px;
+}
+
+.cart-show
+table
+tbody
+.btn-p,
+.cart-show
+table
+tbody
+.btn-m {
+    width: 20px;
+    height: 30px;
+}
+
+.cart-show
+table
+tbody
+.quantity-btn {
+    width: 30px;
+}
+
+.table th {
+    border-top: none;
+}
+
+.table thead th {
+    border-bottom: 4px solid gray;
+}
+
+.table-left {
+    border-right: 1px solid gray;
+}
+

@@ -62,8 +62,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="mx-auto">
+                        <a href="{{ route("cart.show") }}" class="btn btn-secondary">View Cart</a>
+                        <a href="" class="btn btn-primary">Checkout</a>
+                    </div>
                 </div>
             </div>
         </div>

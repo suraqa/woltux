@@ -30,6 +30,8 @@ Route::resource('product', ProductController::class);
 Route::get("/cart/add/{product}", [CartController::class, "add"])->name("cart.add");
 Route::get("/cart/get", [CartController::class, "getCartItems"])->name("cart.get");
 Route::delete("/cart/delete/{product}", [CartController::class, "deleteCartItem"])->name("cart.delete");
+Route::get("/cart/show", [CartController::class, "showCart"])->name("cart.show");
+Route::put("/cart/update/{product}", [CartController::class, "update"])->name("cart.update");
 // Route::resource('cart', CartController::class);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

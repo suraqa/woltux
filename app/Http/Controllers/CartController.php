@@ -8,13 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class CartController extends Controller
-{
-
+class CartController extends Controller {
     public function add(Request $request, Product $product) {
-
         $cart = session()->get("cart");
-
         // if cart is empty
         if(!$cart) {
             $cart = [
@@ -26,17 +22,13 @@ class CartController extends Controller
             ];
             session()->put('cart', $cart);
             return Session::get("cart");
-            // return session()->get("cart");
         }
-
         // if cart not empty but the product exists
         if(isset($cart[$product->id])) {
             $cart[$product->id]["quantity"] += $request["quantity"];
             session()->put('cart', $cart);
             return Session::get("cart");
-            // return session()->get("cart");
         }
-
         // if cart not empty & the product doesnt exist
         $cart[$product->id] = [
             "name" => $product->name,
@@ -45,8 +37,6 @@ class CartController extends Controller
         ];
         session()->put("cart", $cart);
         return Session::get("cart");
-        // return $cart;
-
     }
 
     public function getCartItems() {
@@ -61,11 +51,22 @@ class CartController extends Controller
                 // return "1";
             }
         }
-
-
         Session::put("cart", $cartItems);
         return "done";
-        // return Session::get("cart");
+    }
+
+    public function showCart() {
+        $cartItems = Session::get("cart");
+        return view("cart.show", [
+            "cartItems" => $cartItems
+        ]);
+    }
+
+    public function update(Product $product, Request $request) {
+        $cartItems = Session::get("cart");
+        $cartItems[$product->id]["quantity"] = $request["quantity"];
+        Session::put("cart", $cartItems);
+        return Session::get("cart");
     }
 
 
@@ -170,10 +171,7 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

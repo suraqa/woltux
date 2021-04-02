@@ -1,5 +1,11 @@
-
 let cartItems;
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 const updateQuantity = operator => {
     const quantityElement = document.getElementById("quantity")
     switch (operator) {
@@ -11,7 +17,7 @@ const updateQuantity = operator => {
                 quantityElement.value--
                 break
             }
-        default:
+            default:
             break
     }
 }
@@ -38,9 +44,9 @@ const addToCart = (id) => {
                         <p class="mb-0">SUB-TOTAL:<strong> $${value.price * value.quantity}</strong></p>
                         <a href="#" onclick="deleteCart(${key})" class="text-danger">Delete item</a>
                     </div>`
-                    // console.log(key, value)
                 });
                 document.getElementById("cartItems").innerHTML = content
+                document.querySelector(".modal-footer").classList.remove("d-none");
             } else {
                 console.log("nothin received")
             }
@@ -53,9 +59,9 @@ const getCart = () => {
         url: "/cart/get",
         type: 'get',
         success: response => {
-            if (response) {
+            let content = ""
+            if (response && Object.keys(response).length != 0) {
                 cartItems = response
-                let content = ""
                 $.each(cartItems, (key, value) => {
                     content +=
                         `<div class="cartItem">
@@ -66,29 +72,61 @@ const getCart = () => {
                             <a href="#" onclick="deleteCart(${key})" class="text-danger">Delete item</a>
                         </div>`
                 });
-                document.getElementById("cartItems").innerHTML = content
+                document.querySelector(".modal-footer").classList.remove("d-none");
             } else {
-                console.log("nothin received")
+                content =
+                `<div class="cartItem my-5">
+                    <h3>Your cart is empty!!</h3>
+                    <h3>Add products to your cart</h3>
+                </div>`
+                document.querySelector(".modal-footer").classList.add("d-none");
             }
+            document.getElementById("cartItems").innerHTML = content
         }
     });
 }
 
 
 
-const deleteCart = (id) => {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+const deleteCart = id => {
+
     $.ajax({
         url: "/cart/delete/" + id,
         type: "delete",
         success: response => {
             $("#modal").load(" #modal");
             getCart();
+
+            $(".table-left").load(" .table-left");
+            console.log(response)
         }
     })
-    // console.log(id);
+}
+
+const updateCart = (operator, pId) => {
+    const quantityElement = document.getElementById(`quantity-${pId}`)
+    switch (operator) {
+        case "+":
+            quantityElement.value++
+            break
+        case "-":
+            if (quantityElement.value > 1) {
+                quantityElement.value--
+                break
+            }
+        default:
+            break
+    }
+
+    $.ajax({
+        url: `/cart/update/${pId}`,
+        type: "put",
+        data: {
+            quantity: quantityElement.value
+        },
+        success: response => {
+            const subtotalElement = document.getElementById(`subtotal-${pId}`)
+            subtotalElement.innerHTML = response[pId]["quantity"] * response[pId]["price"]
+        }
+    });
 }
