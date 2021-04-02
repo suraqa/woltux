@@ -88,7 +88,7 @@
                                 </div>
                             </form>
                         </div>
-                        <script>
+                        {{-- <script>
 
                             // let cartItems;
                             const updateQuantity = operator => {
@@ -182,7 +182,7 @@
                                 // console.log(id);
                             }
 
-                        </script>
+                        </script> --}}
                         {{-- <a href="#"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a> --}}
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="modal">
                     <div class="row justify-content-center">
                         <div class="col-10">
                             <div class="row justify-content-center">

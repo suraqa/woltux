@@ -12,7 +12,7 @@ class PagesController extends Controller
     {
         return view("index", [
             "products" => Product::take(4)->latest()->get(),
-            "cart" => Cart::latest()->get()
+            // "cart" => Cart::latest()->get()
         ]);
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- {{ dd($cart) }} --}}
+    {{-- {{ dd(12) }} --}}
     <section class="popular-products my-5 py-5">
         <div class="container">
             <div class="heading text-center">
