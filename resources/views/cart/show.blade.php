@@ -24,7 +24,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $total = 0; ?>
                                 @foreach ($cartItems as $p_id => $p_details)
+                                    <?php
+                                        $total += $p_details["price"] * $p_details["quantity"];
+                                    ?>
                                     <tr>
                                         <td>
                                             <div class="d-flex">
@@ -56,7 +60,13 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                <tr>
+                                <tr class="total">
+                                    <td><h4><strong>Total</strong></h4></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><h5><strong> $ <span id="total">{{ $total }}</span></strong></h5></td>
+                                </tr>
+                                <tr class="continue">
                                     <td scope="column">
                                         <div class="text-center py-5">
                                             <a href="#" class="btn btn-primary btn-lg">Continue shopping</a>

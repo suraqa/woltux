@@ -165,3 +165,16 @@ tbody
     border-right: 1px solid gray;
 }
 
+.cart-show
+.table-left
+.total
+td {
+    border-top: 4px solid gray;
+}
+
+.cart-show
+.table-left
+.continue
+td {
+    border: none;
+}

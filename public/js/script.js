@@ -127,6 +127,11 @@ const updateCart = (operator, pId) => {
         success: response => {
             const subtotalElement = document.getElementById(`subtotal-${pId}`)
             subtotalElement.innerHTML = response[pId]["quantity"] * response[pId]["price"]
+            let total = 0
+            for(const pId in response ) {
+                total += (response[pId]["quantity"] * response[pId]["price"])
+            }
+            document.getElementById("total").innerHTML = total
         }
     });
 }
