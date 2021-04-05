@@ -173,8 +173,35 @@ td {
 }
 
 .cart-show
-.table-left
+.table
 .continue
 td {
-    border: none;
+    border-top: 4px solid gray;
+}
+
+.cart-show
+.table
+.last
+td {
+    border-bottom: 4px solid gray;
+}
+
+.cart-show
+form
+hr {
+    border:  2px solid gray;
+}
+
+.cart-show
+form
+label {
+    font-size: 20px;
+    padding-top: 5px;
+}
+
+.cart-show
+form
+hr {
+    margin-top: 2px;
+    margin-bottom: 30px;
 }

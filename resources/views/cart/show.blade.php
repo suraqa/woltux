@@ -1,5 +1,5 @@
 @extends("layouts.app")
-{{-- {{ dd($cartItems) }} --}}
+
 @section('content')
     <section class="cart-show my-5">
         <div class="container">
@@ -13,7 +13,7 @@
 
             @if (!empty($cartItems))
                 <div class="row my-5">
-                    <div class="col-7 table-left">
+                    <div class="col-8 table-left">
                         <table class="table" id="table-left">
                             <thead>
                                 <tr>
@@ -60,12 +60,12 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                <tr class="total">
+                                {{-- <tr class="total">
                                     <td><h4><strong>Total</strong></h4></td>
                                     <td></td>
                                     <td></td>
                                     <td><h5><strong> $ <span id="total">{{ $total }}</span></strong></h5></td>
-                                </tr>
+                                </tr> --}}
                                 <tr class="continue">
                                     <td scope="column">
                                         <div class="text-center py-5">
@@ -79,17 +79,52 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-5">
-                        <table class="table" id="table-left">
+                    <div class="col-4">
+                        <table class="table" id="table-right">
                             <thead>
                                 <tr>
-                                    <th>PRODUCT</th>
-                                    <th>PRICE</th>
-                                    <th>QUANTITY</th>
-                                    <th>SUBTOTAL</th>
+                                    <th>CART TOTALS</th>
+                                    <th></th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                <tr>
+                                    <td>SUB TOTAL</td>
+                                    <td class="text-right"><strong> $ <span id="total">{{ $total }}</span></strong></td>
+                                </tr>
+                                <tr class="d-none">
+                                    <td></td>
+                                    <td class="text-right"></td>
+                                </tr>
+                                <tr class="last">
+                                    <td>TOTAL</td>
+                                    <td class="text-right"><strong>32132</strong></td>
+                                </tr>
+                            </tbody>
                         </table>
+                        <div class="text-right">
+                            <p>Starting at $107/mo with <strong>affirm</strong>. <a href="#">Learn more</a></p>
+                        </div>
+                        <hr>
+                        <div>
+                            <a href="#" class="btn btn-lg btn-primary w-100">PROCEED TO CHECKOUT</a>
+                        </div>
+                        <div class="my-5">
+                            <form action="#" method="post">
+                                <div>
+                                    <label for="coupon">
+                                        <i class="fa fa-tag" aria-hidden="true"></i> <strong>Coupon</strong>
+                                    </label>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <input type="text" name="coupon" id="coupon" class="form-control" placeholder="Promo Code">
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">Apply Code</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             @else
