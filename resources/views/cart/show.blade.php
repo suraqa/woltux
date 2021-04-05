@@ -60,12 +60,6 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                {{-- <tr class="total">
-                                    <td><h4><strong>Total</strong></h4></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><h5><strong> $ <span id="total">{{ $total }}</span></strong></h5></td>
-                                </tr> --}}
                                 <tr class="continue">
                                     <td scope="column">
                                         <div class="text-center py-5">
@@ -90,7 +84,7 @@
                             <tbody>
                                 <tr>
                                     <td>SUB TOTAL</td>
-                                    <td class="text-right"><strong> $ <span id="total">{{ $total }}</span></strong></td>
+                                    <td class="text-right"><strong> $ <span id="sub-total">{{ $total }}</span></strong></td>
                                 </tr>
                                 <tr class="d-none">
                                     <td></td>
@@ -98,7 +92,7 @@
                                 </tr>
                                 <tr class="last">
                                     <td>TOTAL</td>
-                                    <td class="text-right"><strong>32132</strong></td>
+                                    <td class="text-right"><strong> $ <span id="total">{{ $total }}</span></strong></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -107,7 +101,7 @@
                         </div>
                         <hr>
                         <div>
-                            <a href="#" class="btn btn-lg btn-primary w-100">PROCEED TO CHECKOUT</a>
+                            <a href="{{ route("checkout") }}" class="btn btn-lg btn-primary w-100">PROCEED TO CHECKOUT</a>
                         </div>
                         <div class="my-5">
                             <form action="#" method="post">

@@ -127,7 +127,7 @@ a {
 
 /* Cart.show */
 
-.cart-show
+
 .breadcrumbs
 h3
 a {
@@ -205,3 +205,42 @@ hr {
     margin-top: 2px;
     margin-bottom: 30px;
 }
+
+/******* CHECKOUT ***********/
+
+.checkout
+.left-side {
+    border-top: 2px solid #d3d3d3;
+}
+
+.checkout
+.right-side {
+    border: 2px solid #d3d3d3;
+}
+
+
+.password-hide {
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s ease-in-out;
+}
+
+.password-show {
+    visibility: visible;
+    opacity: 1;
+    transition: .3s ease-in-out;
+
+}
+
+.checkout .table thead th {
+    border-bottom: 4px solid #d3d3d3;
+}
+
+.checkout
+.total
+td {
+    border-bottom: 4px solid #d3d3d3;
+
+}
+
+

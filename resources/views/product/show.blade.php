@@ -119,7 +119,7 @@
                 <div class="modal-footer">
                     <div class="mx-auto">
                         <a href="{{ route("cart.show") }}" class="btn btn-secondary">View Cart</a>
-                        <a href="" class="btn btn-primary">Checkout</a>
+                        <a href="{{ route("checkout") }}" class="btn btn-primary">Checkout</a>
                     </div>
                 </div>
             </div>

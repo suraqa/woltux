@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/script.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     {{-- jQuery --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -76,11 +75,19 @@
                             </div>
                         </li>
                     @endguest
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="getCart()" data-toggle="modal" data-target="#exampleModal">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        </a>
-                    </li>
+                    @if (Request::path() == "checkout")
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route("cart.show") }}">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="getCart()" data-toggle="modal" data-target="#exampleModal">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -91,6 +98,8 @@
     @yield('content')
 
 
+    <script src="{{ asset('js/script.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </body>
 

@@ -131,7 +131,18 @@ const updateCart = (operator, pId) => {
             for(const pId in response ) {
                 total += (response[pId]["quantity"] * response[pId]["price"])
             }
+            document.getElementById("sub-total").innerHTML = total
             document.getElementById("total").innerHTML = total
         }
     });
+}
+
+
+const abc = el => {
+    if(el.checked === true) {
+        document.querySelector(".password-hide").classList.add("password-show")
+    } else {
+        document.querySelector(".password-hide").classList.remove("password-show")
+
+    }
 }
