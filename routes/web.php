@@ -37,5 +37,11 @@ Route::put("/cart/update/{product}", [CartController::class, "update"])->name("c
 
 //Checkout route
 Route::get("/checkout", [CheckoutController::class, "index"])->name("checkout");
+Route::post("/checkout", [CheckoutController::class, "checkout"])->name("checkout.post");
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// Route::post("/pay", function() {
+//     return "done";
+// });
