@@ -150,101 +150,42 @@ const abc = el => {
 const stripe = Stripe('pk_test_51IRhvAKkz2PvTdyx6ypGaiwp7HRVdIQU8MuqBlnOfsRUzt45pnPG8Kom6MITMtANUX7PEJAHB3FvFByBBVWdx4Cb00pBOpFm66');
 
 const elements = stripe.elements();
-let cardNumberEl = elements.create('card');
 
+const card = elements.create("card", {
+    hidePostalCode: true,
+    iconStyle: "solid"
+})
+
+card.mount("#card-element")
+
+
+// let cardNumberEl = elements.create('card');
 // let expEl = elements.create("cardExpiry");
 // let cvcEl = elements.create("cardCvc");
 
-cardNumberEl.mount('#card-number');
+
+// cardNumberEl.mount('#card-number');
 // expEl.mount('#card-exp');
 // cvcEl.mount('#card-cvc');
 
-var form = document.getElementById('payment-form');
-
-form.addEventListener('submit', function (event) {
-    // We don't want to let default form submission happen here,
-    // which would refresh the page.
-    event.preventDefault();
-    $.ajax({
-        url: "/checkout",
-        type: "post",
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-        success: response => {
-            console.log(response)
-        }
-    })
-
-    // stripe.createPaymentMethod({
-    //     type: 'card',
-    //     card: cardNumberEl,
-    //     billing_details: {
-    //         // Include any additional collected billing details.
-    //         name: 'Jenny Rosen',
-    //     },
-    // }).then(stripePaymentMethodHandler);
-});
-
-// function stripePaymentMethodHandler(result) {
-//     if (result.error) {
-//         // Show error in payment form
-//     } else {
-//         // Otherwise send paymentMethod.id to your server (see Step 4)
-
-//         $.ajax({
-//             url: "/checkout",
-//             type: "post",
-//             headers: { "Content-type": "application/json; charset=UTF-8" },
-//             data: JSON.stringify({
-//                 payment_method_id: result.paymentMethod.id
-//             }),
-//             success: response => {
-//                 // console.log(response)
-//             }
-//         })
-
-
-//         // fetch('/checkout', {
-//         //     method: 'POST',
-//         //     headers: { 'Content-Type': 'application/json' },
-//         //     body: JSON.stringify({
-//         //         payment_method_id: result.paymentMethod.id,
-//         //     })
-//         // }).then(function (result) {
-//         //     // Handle server response (see Step 4)
-//         //     result.json().then(function (json) {
-//         //         console.log(1)
-//         //     })
-//         // });
-//     }
-// }
-// function stripePaymentMethodHandler(result) {
-//     if (result.error) {
-//         // Show error in payment form
-//     } else {
-//         // Otherwise send paymentMethod.id to your server (see Step 4)
-//         fetch('/pay', {
-//             method: 'POST',
-//             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify({
-//                 payment_method_id: result.paymentMethod.id,
-//             })
-//         }).then(function (result) {
-//             // Handle server response (see Step 4)
-//             result.json().then(function (json) {
-//                 console.log(json);
-//             })
-//         });
-//     }
-// }
 
 
 
 
-// fetch('https://jsonplaceholder.typicode.com/posts', {
-//     method: "POST",
-//     body: JSON.stringify(_data),
-//     headers: { "Content-type": "application/json; charset=UTF-8" }
+
+
+
+
+
+
+
+
+
+
+
+// const form = document.getElementById("payment-form")
+
+// form.addEventListener("submit", event => {
+//     event.preventDefault()
+//     form.submit();
 // })
-//     .then(response => response.json())
-//     .then(json => console.log(json))
-//     .catch(err => console.log(err));

@@ -93,12 +93,12 @@
                                     <div class="form-group">
                                         <label for="email"><strong>Email Address <span
                                                     class="text-danger">*</span></strong></label>
-                                        <input type="email" class="form-control" id="email"  name="company">
+                                        <input type="email" class="form-control" id="email"  name="email">
                                     </div>
                                 </div>
                                 <div>
                                     <div class="form-group">
-                                        <input type="checkbox" name="" id="acc" onchange="abc(this)"> <label
+                                        <input type="checkbox" name="create-acc" value="true" id="acc" onchange="abc(this)"> <label
                                             for="acc"><strong>Create an account ?</strong></label>
                                     </div>
                                 </div>
@@ -151,18 +151,18 @@
                                 <p class="muted">Pay with your Debit/Credit card</p>
 
                                 <div class="form-group">
-                                    <label for="card-number"><strong>Card Number <span class="text-danger">*</span></strong></label>
-                                    <div id="card-number" class="form-control"></div>
+                                    <label for="card-element"><strong>Card Number <span class="text-danger">*</span></strong></label>
+                                    <div id="card-element" class="form-control"></div>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="card-exp"><strong>Expiry Date <span class="text-danger">*</span></strong></label>
                                     <div id="card-exp" class="form-control"></div>
                                 </div>
                                 <div class="form-group">
                                     <label for="card-cvc"><strong>Card Code (CVC) <span class="text-danger">*</span></strong></label>
                                     <div id="card-cvc" class="form-control"></div>
-                                </div>
-                                <input type="submit" value="PLACE ORDER" class="btn btn-primary">
+                                </div> --}}
+                                <a class="btn btn-primary" href="#" onclick="placeOrder()">PLACE ORDER</a>
                                 {{-- <div id="card-element"></div> --}}
 
                             </div>

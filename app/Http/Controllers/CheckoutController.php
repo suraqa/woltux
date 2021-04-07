@@ -20,12 +20,14 @@ class CheckoutController extends Controller
 
         Stripe\Stripe::setApiKey("sk_test_51IRhvAKkz2PvTdyxiy8MgzsK06jaj33uNYgu6WuwJdWniZENPi5MyimrYhzysrjfmfgpm5GkMQbqlRLZzWSzNA0s005UAKwTLA");
 
-        Stripe\Charge::create([
-            'amount' => 200000,
-            'currency' => 'usd',
-            'source' => 'tok_visa',
-            'description' => 'My First Test Charge (created for API docs)',
-          ]);
+        // Stripe\Charge::create([
+        //     'amount' => 200000,
+        //     'currency' => 'usd',
+        //     'source' => 'tok_visa',
+        //     'description' => 'My First Test Charge (created for API docs)',
+        //   ]);
+
+        return $request;
 
 
 
