@@ -243,6 +243,12 @@ td {
 
 }
 
+.checkout
+.sub-total
+td {
+    border-top: 4px solid #d3d3d3;
+
+}
 /* .card-container {
     height: 500px;
 } */

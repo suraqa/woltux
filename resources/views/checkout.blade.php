@@ -13,6 +13,8 @@
 
             <form method="post" id="payment-form">
                 @csrf
+                <input type="hidden" id="stripe-key" value="{{ env("STRIPE_KEY") }}">
+                <input type="hidden" id="client-secret" value="{{ $client_secret }}">
                 <div class="row my-4">
                     <div class="col-7">
                         <div class="left-side my-3 py-2">
@@ -137,7 +139,7 @@
                                                         {{ $item['quantity'] * $item['price'] }}</strong></td>
                                             </tr>
                                         @endforeach
-                                        <tr>
+                                        <tr class="sub-total">
                                             <td><strong>Subtotal</strong></td>
                                             <td class="text-right"><strong> $ {{ $total }}</strong></td>
                                         </tr>
@@ -162,8 +164,9 @@
                                     <label for="card-cvc"><strong>Card Code (CVC) <span class="text-danger">*</span></strong></label>
                                     <div id="card-cvc" class="form-control"></div>
                                 </div> --}}
-                                <a class="btn btn-primary" href="#" onclick="placeOrder()">PLACE ORDER</a>
                                 {{-- <div id="card-element"></div> --}}
+                                {{-- <a class="btn btn-primary" href="#" onclick="placeOrder()">PLACE ORDER</a> --}}
+                                <button type="submit" class="btn btn-primary">PLACE ORDER</button>
 
                             </div>
                         </div>

@@ -6,19 +6,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Stripe;
 
-class CheckoutController extends Controller
-{
-    public function index()
-    {
+class CheckoutController extends Controller {
+
+    public function index() {
+
+        Stripe\Stripe::setApiKey(env("STRIPE_SECRET"));
+
+        $intent = Stripe\PaymentIntent::create([
+            "amount" => 2000 * 100,
+            "currency" => "pkr",
+            "payment_method_types" => ["card"]
+        ]);
+
         $cart = Session::get("cart");
         return view("checkout", [
-            "cartItems" => $cart
+            "cartItems" => $cart,
+            "client_secret" => $intent->client_secret
         ]);
+
     }
 
     public function checkout(Request $request) {
 
-        Stripe\Stripe::setApiKey("sk_test_51IRhvAKkz2PvTdyxiy8MgzsK06jaj33uNYgu6WuwJdWniZENPi5MyimrYhzysrjfmfgpm5GkMQbqlRLZzWSzNA0s005UAKwTLA");
 
         // Stripe\Charge::create([
         //     'amount' => 200000,

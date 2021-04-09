@@ -147,7 +147,8 @@ const abc = el => {
     }
 }
 
-const stripe = Stripe('pk_test_51IRhvAKkz2PvTdyx6ypGaiwp7HRVdIQU8MuqBlnOfsRUzt45pnPG8Kom6MITMtANUX7PEJAHB3FvFByBBVWdx4Cb00pBOpFm66');
+
+const stripe = Stripe(document.getElementById("stripe-key").value);
 
 const elements = stripe.elements();
 
@@ -157,6 +158,27 @@ const card = elements.create("card", {
 })
 
 card.mount("#card-element")
+
+const form = document.getElementById("payment-form")
+
+form.addEventListener("submit", event => {
+    event.preventDefault()
+    stripe.confirmCardPayment(document.getElementById("client-secret").value, {
+        payment_method: {
+            card: card,
+            billing_details: {
+              name: 'Jenny Rosen',
+            }
+        }
+    }).then(result => {
+        if(result.error) {
+            console.log("error: ", result.error)
+        } else {
+            console.log("success: ", result)
+        }
+    })
+})
+
 
 
 // let cardNumberEl = elements.create('card');
@@ -183,9 +205,3 @@ card.mount("#card-element")
 
 
 
-// const form = document.getElementById("payment-form")
-
-// form.addEventListener("submit", event => {
-//     event.preventDefault()
-//     form.submit();
-// })
