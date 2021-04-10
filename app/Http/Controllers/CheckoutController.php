@@ -10,15 +10,21 @@ class CheckoutController extends Controller {
 
     public function index() {
 
+        $cart = Session::get("cart");
+
+        $total = 0;
+        foreach($cart as $p_id => $details) {
+            $total += $details["quantity"] * $details["price"];
+        }
+
         Stripe\Stripe::setApiKey(env("STRIPE_SECRET"));
 
         $intent = Stripe\PaymentIntent::create([
-            "amount" => 2000 * 100,
-            "currency" => "pkr",
+            "amount" => $total * 100,
+            "currency" => "usd",
             "payment_method_types" => ["card"]
         ]);
 
-        $cart = Session::get("cart");
         return view("checkout", [
             "cartItems" => $cart,
             "client_secret" => $intent->client_secret
@@ -28,47 +34,7 @@ class CheckoutController extends Controller {
 
     public function checkout(Request $request) {
 
-
-        // Stripe\Charge::create([
-        //     'amount' => 200000,
-        //     'currency' => 'usd',
-        //     'source' => 'tok_visa',
-        //     'description' => 'My First Test Charge (created for API docs)',
-        //   ]);
-
-        return $request;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // dd($request);
 
     }
 }

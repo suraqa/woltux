@@ -83,7 +83,12 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="getCart()" data-toggle="modal" data-target="#exampleModal">
+                            <a class="nav-link" href="{{ route("wishlist.index") }}" title="Show wishlist">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" title="Show cart" onclick="getCart()" data-toggle="modal" data-target="#exampleModal">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             </a>
                         </li>

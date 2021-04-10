@@ -1,3 +1,8 @@
+
+.alert {
+    transition: .5s ease-in-out;
+}
+
 /******** Popular Products Section ********/
 .popular-products
 .underline {

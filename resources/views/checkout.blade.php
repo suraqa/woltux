@@ -11,7 +11,7 @@
                 </h3>
             </div>
 
-            <form method="post" id="payment-form">
+            <form method="post" id="payment-form" action="{{ route("checkout.post") }}" onsubmit="return false">
                 @csrf
                 <input type="hidden" id="stripe-key" value="{{ env("STRIPE_KEY") }}">
                 <input type="hidden" id="client-secret" value="{{ $client_secret }}">
@@ -153,19 +153,10 @@
                                 <p class="muted">Pay with your Debit/Credit card</p>
 
                                 <div class="form-group">
-                                    <label for="card-element"><strong>Card Number <span class="text-danger">*</span></strong></label>
+                                    <label for="card-element"><strong>Card Details <span class="text-danger">*</span></strong></label>
                                     <div id="card-element" class="form-control"></div>
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label for="card-exp"><strong>Expiry Date <span class="text-danger">*</span></strong></label>
-                                    <div id="card-exp" class="form-control"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="card-cvc"><strong>Card Code (CVC) <span class="text-danger">*</span></strong></label>
-                                    <div id="card-cvc" class="form-control"></div>
-                                </div> --}}
-                                {{-- <div id="card-element"></div> --}}
-                                {{-- <a class="btn btn-primary" href="#" onclick="placeOrder()">PLACE ORDER</a> --}}
+
                                 <button type="submit" class="btn btn-primary">PLACE ORDER</button>
 
                             </div>

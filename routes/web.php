@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,11 @@ Route::get("/cart/get", [CartController::class, "getCartItems"])->name("cart.get
 Route::delete("/cart/delete/{product}", [CartController::class, "deleteCartItem"])->name("cart.delete");
 Route::get("/cart/show", [CartController::class, "showCart"])->name("cart.show");
 Route::put("/cart/update/{product}", [CartController::class, "update"])->name("cart.update");
-// Route::resource('cart', CartController::class);
+
+// Wishlist route
+Route::get("/wishlist", [WishlistController::class, "index"])->name("wishlist.index");
+Route::get("/wishlist/add/{product}", [WishlistController::class, "add"])->name("wishlist.add");
+
 
 //Checkout route
 Route::get("/checkout", [CheckoutController::class, "index"])->name("checkout");

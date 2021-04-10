@@ -147,6 +147,21 @@ const abc = el => {
     }
 }
 
+const addToWL = id => {
+    $.ajax({
+        url: `/wishlist/add/${id}`,
+        type: "get",
+        success: response => {
+            const alertEl = document.querySelector(".alert")
+            alertEl.classList.remove("d-none")
+            setTimeout(() => {
+                alertEl.classList.add("d-none")
+            },3000)
+            console.log(response)
+        }
+    })
+}
+
 
 const stripe = Stripe(document.getElementById("stripe-key").value);
 
@@ -164,6 +179,7 @@ const form = document.getElementById("payment-form")
 form.addEventListener("submit", event => {
     event.preventDefault()
     stripe.confirmCardPayment(document.getElementById("client-secret").value, {
+        receipt_email: document.getElementById("email"),
         payment_method: {
             card: card,
             billing_details: {
@@ -175,8 +191,10 @@ form.addEventListener("submit", event => {
             console.log("error: ", result.error)
         } else {
             console.log("success: ", result)
+            form.submit();
         }
     })
+
 })
 
 
