@@ -18,6 +18,7 @@
                                 <th>PRICE</th>
                                 <th>QUANTITY</th>
                                 <th>SUBTOTAL</th>
+                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,6 +28,16 @@
                                     <td>{{ $details["price"] }}</td>
                                     <td>{{ $details["quantity"] }}</td>
                                     <td>{{ $details["price"] * $details["quantity"] }}</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <div>
+                                                <button class="btn btn-primary">Add to cart</button>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-danger">Delete</button>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
