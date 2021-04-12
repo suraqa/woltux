@@ -1,0 +1,1 @@
+Cart setting when every item is removed. SOLUTION reload page instead of table

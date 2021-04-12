@@ -38,6 +38,9 @@ Route::put("/cart/update/{product}", [CartController::class, "update"])->name("c
 // Wishlist route
 Route::get("/wishlist", [WishlistController::class, "index"])->name("wishlist.index");
 Route::get("/wishlist/add/{product}", [WishlistController::class, "add"])->name("wishlist.add");
+Route::put("/wishlist/update/{product}", [WishlistController::class, "update"])->name("wishlist.update");
+Route::get("/wishlist/add/cart/{product}", [WishlistController::class, "addToCart"])->name("wishlist.addToCart");
+Route::get("/wishlist/add-all", [WishlistController::class, "addAlltoCart"]);
 
 
 //Checkout route

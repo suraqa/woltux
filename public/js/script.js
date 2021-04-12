@@ -86,8 +86,6 @@ const getCart = () => {
     });
 }
 
-
-
 const deleteCart = id => {
 
     $.ajax({
@@ -137,7 +135,6 @@ const updateCart = (operator, pId) => {
     });
 }
 
-
 const abc = el => {
     if (el.checked === true) {
         document.querySelector(".password-hide").classList.add("password-show")
@@ -153,14 +150,100 @@ const addToWL = id => {
         type: "get",
         success: response => {
             const alertEl = document.querySelector(".alert")
-            alertEl.classList.remove("d-none")
+            alertEl.style.opacity = 1
             setTimeout(() => {
-                alertEl.classList.add("d-none")
-            },3000)
+                alertEl.style.opacity = 0
+            }, 1500)
             console.log(response)
         }
     })
 }
+
+const updateWL = (operator, pId) => {
+    const quantityElement = document.getElementById(`quantity-${pId}`)
+    switch (operator) {
+        case "+":
+            quantityElement.value++
+            break
+        case "-":
+            if (quantityElement.value > 1) {
+                quantityElement.value--
+                break
+            }
+        default:
+            break
+    }
+
+    $.ajax({
+        url: `/wishlist/update/${pId}`,
+        type: "put",
+        data: {
+            quantity: quantityElement.value
+        },
+        success: response => {
+            const subtotalElement = document.getElementById(`subtotal-${pId}`)
+            subtotalElement.innerHTML = response[pId]["quantity"] * response[pId]["price"]
+        }
+    });
+}
+
+const addWLtoCart = pId => {
+    $.ajax({
+        type: "get",
+        url: `/wishlist/add/cart/${pId}`,
+        data: {
+            quantity: document.getElementById(`quantity-${pId}`).value
+        },
+        success: response => {
+            // $("#table").load(" .table")
+            const alertEl = document.querySelector(".alert")
+            alertEl.style.opacity = 1
+            setTimeout(() => {
+                alertEl.style.opacity = 0
+                window.location.reload()
+            }, 1500)
+            console.log(response)
+
+        }
+    })
+}
+
+
+const addAllWLtoCart = () => {
+    $.ajax({
+        type: "get",
+        url: "/wishlist/add-all",
+        success: response => {
+            const alertEl = document.querySelector(".alert")
+            alertEl.style.opacity = 1
+            setTimeout(() => {
+                alertEl.style.opacity = 0
+                window.location.reload()
+            }, 1500)
+            console.log(response)
+        }
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // const stripe = Stripe(document.getElementById("stripe-key").value);

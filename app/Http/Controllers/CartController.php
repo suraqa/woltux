@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller {
-    public function add(Request $request, Product $product) {
+
+    public static function add(Request $request, Product $product) {
         $cart = session()->get("cart");
         // if cart is empty
         if(!$cart) {

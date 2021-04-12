@@ -12,14 +12,14 @@
                 <div class="col-12">
                     <div class="row justify-content-center">
                         <div class="col-6">
-                            <div class="alert alert-success text-center d-none" role="alert">
+                            <div class="alert alert-success text-center" role="alert">
                                 <strong>Added to Wishlist!!</strong>
                             </div>
                         </div>
                     </div>
                 </div>
                 @foreach ($products as $product)
-                    <div class="col-3 my-4">
+                    <div class="col-3">
                         <div class="card shadow">
                             <a href="{{ route('product.show', $product->id) }}">
                                 <img class="card-img-top" src="

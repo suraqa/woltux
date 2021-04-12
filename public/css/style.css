@@ -1,6 +1,8 @@
 
 .alert {
-    transition: .5s ease-in-out;
+    opacity: 0;
+    transition: .3s ease-in-out;
+    /* visibility: hidden; */
 }
 
 /******** Popular Products Section ********/
@@ -32,6 +34,7 @@ a {
     opacity: 0;
     color: rgb(55, 177, 177);
     background: whitesmoke;
+    cursor: pointer;
 
 }
 
@@ -258,4 +261,29 @@ td {
     height: 500px;
 } */
 
+/********** WISHLIST ************/
+
+.wishlist-section
+.table {
+    border-bottom: 4px solid gray;
+}
+
+.wishlist-section
+table
+tbody
+.btn-p,
+.wishlist-section
+table
+tbody
+.btn-m {
+    width: 20px;
+    height: 30px;
+}
+
+.wishlist-section
+table
+tbody
+.quantity-btn {
+    width: 30px;
+}
 
