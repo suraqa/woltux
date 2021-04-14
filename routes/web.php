@@ -41,6 +41,8 @@ Route::get("/wishlist/add/{product}", [WishlistController::class, "add"])->name(
 Route::put("/wishlist/update/{product}", [WishlistController::class, "update"])->name("wishlist.update");
 Route::get("/wishlist/add/cart/{product}", [WishlistController::class, "addToCart"])->name("wishlist.addToCart");
 Route::get("/wishlist/add-all", [WishlistController::class, "addAlltoCart"]);
+Route::delete("/wishlist/delete/{product}", [WishlistController::class, "delete"]);
+Route::delete("/wishlist/delete-all", [WishlistController::class, "deleteAll"]);
 
 
 //Checkout route

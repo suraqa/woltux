@@ -49,7 +49,7 @@
                                                     <button onclick="addWLtoCart({{ $p_id }})" class="btn btn-primary">Add to cart</button>
                                                 </div>
                                                 <div class="ml-2">
-                                                    <button class="btn btn-danger">Delete</button>
+                                                    <button onclick="deleteWL({{ $p_id }})" class="btn btn-danger">Delete</button>
                                                 </div>
                                             </div>
                                         </td>
@@ -60,6 +60,7 @@
                     </div>
                     <div class="text-center mt-5">
                         <button onclick="addAllWLtoCart()" class="btn btn-lg btn-primary">Add all to Cart</button>
+                        <button onclick="deleteAllWL()" class="btn btn-lg btn-danger ml-2">Delete all</button>
                     </div>
                 </div>
             @else

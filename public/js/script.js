@@ -92,10 +92,11 @@ const deleteCart = id => {
         url: "/cart/delete/" + id,
         type: "delete",
         success: response => {
-            $("#modal").load(" #modal");
-            getCart();
+            // $("#modal").load(" #modal");
+            // getCart();
 
-            $(".table-left").load(" .table-left");
+            // $(".table-left").load(" .table-left");
+            window.location.reload()
             console.log(response)
         }
     })
@@ -159,6 +160,16 @@ const addToWL = id => {
     })
 }
 
+const deleteWL = id => {
+    $.ajax({
+        type: "delete",
+        url: `/wishlist/delete/${id}`,
+        success: response => {
+            window.location.reload()
+        }
+    })
+}
+
 const updateWL = (operator, pId) => {
     const quantityElement = document.getElementById(`quantity-${pId}`)
     switch (operator) {
@@ -208,7 +219,6 @@ const addWLtoCart = pId => {
     })
 }
 
-
 const addAllWLtoCart = () => {
     $.ajax({
         type: "get",
@@ -221,6 +231,16 @@ const addAllWLtoCart = () => {
                 window.location.reload()
             }, 1500)
             console.log(response)
+        }
+    })
+}
+
+const deleteAllWL = () => {
+    $.ajax({
+        type: "delete",
+        url: "/wishlist/delete-all",
+        success: response => {
+            window.location.reload()
         }
     })
 }

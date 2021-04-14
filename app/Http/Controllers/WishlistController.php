@@ -18,17 +18,19 @@ class WishlistController extends Controller {
     public function add(Product $product) {
         $wishlist = Session::get("wishlist");
         $cart = Session::get("cart");
+
         // if wishlist is empty
-        // if(!$wishlist) {
-        //     $wishlist = [
-        //         $product->id => [
-        //             "name" => $product->name,
-        //             "quantity" => 1,
-        //             "price" => $product->price,
-        //         ]
-        //     ];
-        //     Session::put("wishlist", $wishlist);
-        // }
+        if(!$wishlist) {
+            $wishlist = [
+                $product->id => [
+                    "name" => $product->name,
+                    "quantity" => 1,
+                    "price" => $product->price,
+                ]
+            ];
+            Session::put("wishlist", $wishlist);
+        }
+
         if (empty($wishlist) && !array_key_exists($product["id"], $cart) && !array_key_exists($product["id"], $wishlist)) {
             $wishlist = [
                 $product->id => [
@@ -84,34 +86,22 @@ class WishlistController extends Controller {
         Session::put("cart", $cart);
         Session::put("wishlist", []);
 
-        // if cart is empty
-        // if (!$cart) {
-        //     foreach($wishlist as $p_id => $details) {
-        //         $cart[$p_id] = [
-        //             "name" => $details["name"],
-        //             "quantity" => $details["quantity"],
-        //             "price" => $details["price"],
-        //         ];
-        //         Session::put('cart', $cart);
-        //     }
-        //     Session::forget("wishlist");
-        // }
-        // // if cart is not empty
-        // else {
-        //     foreach($wishlist as $p_id => $details) {
-        //         if(array_key_exists($p_id, $wishlist)) {
-        //             return "found";
-        //         }
-        //         // $cart[$p_id] = [
-        //             //     "name" => $details["name"],
-        //             //     "quantity" => $details["quantity"],
-        //             //     "price" => $details["price"],
-        //             // ];
-        //             // Session::put('cart', $cart);
-        //         }
-        //     // Session::forget("wishlist");
-        // }
-
         return Session::get("cart");
     }
+
+    public function delete(Product $product) {
+        $wishlist = Session::get("wishlist");
+
+        foreach($wishlist as $p_id => $details) {
+            if($product["id"] == $p_id) {
+                unset($wishlist[$product["id"]]);
+            }
+        }
+        Session::put("wishlist", $wishlist);
+    }
+
+    public function deleteAll() {
+        Session::forget("wishlist");
+    }
+
 }
